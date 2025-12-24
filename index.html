@@ -58,7 +58,6 @@
             justify-content: flex-start;
         }
 
-        /* Gerakan Membuka */
         .opened .left-door { transform: translateX(-100%); }
         .opened .right-door { transform: translateX(100%); }
 
@@ -109,17 +108,38 @@
             margin: 10px 0;
         }
 
-        .foto-frame {
-            width: 220px;
-            height: 280px;
+        /* --- CSS SLIDESHOW --- */
+        .slideshow-container {
+            width: 240px;
+            height: 320px;
             margin: 30px auto;
+            position: relative;
             border: 10px solid white;
-            border-radius: 110px 110px 10px 10px;
+            border-radius: 120px 120px 15px 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
+            background: #fff;
         }
 
-        .foto-bayi { width: 100%; height: 100%; object-fit: cover; }
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fade {
+            animation: fadeAnim 1.5s;
+        }
+
+        @keyframes fadeAnim {
+            from {opacity: 0.4} to {opacity: 1}
+        }
 
         .card {
             background: white;
@@ -178,7 +198,8 @@
         <section class="hero">
             <p>Bismillahirrahmanirrahiim</p>
             <h1>Mumtaza Maulana Zunaira</h1>
-           <div class="slideshow-container">
+            
+            <div class="slideshow-container">
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0pEKGN5pdej3rvBuff0KBYwyV2dxGyIUvPSq3wxwCNrjRzwjI_jFNKcxbB1Fg4-ONJzMrW1pHkqaf7SXCQ71n7sghXVBCAGWpkTTBPFApKQguLRR_-qeQyhZ631scHbEa9W6F-5ZO0Q5jqh9UVQgdLuEE_y1qC9t4wZLCO0KwYUxZp9kExNe9aVz5-PA/s320/WhatsApp%20Image%202025-12-24%20at%2018.29.04.jpeg"></div>
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj73sDWqRJPFFG4qvKwXaN5Ua0hdXVZUqcld338dvhT2FAkiRpSO-WEsojpVeBHewyuEU6QQjdoQI-18-T8Bf4My67q_0WLvcm4xNUgLpgmPrdtSagt9v6EXZx2GQjcdkLnWhnJGeFo243QoKc8-ygPWkeyFTDxiwTj791JH_dLZ5evyEabtqTeSApYvr4/s320/WhatsApp%20Image%202025-12-24%20at%2020.24.00.jpeg"></div>
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAnDWXYCs2pG8OTgTmkXuLN5NdOYomxK4AmenY9yYA_MjXH3iAj9NT8zlWIVgjxfcz42vDKYz5FWZgLJsklkmuE6zKwAY8HUlV0KKhK-i35EVOmtAu0aQ68_oRijgoSPoMPSAj3PiIr21NivL-SOEYP_6reGSGVOFFtbHk2e6JmndCfWAX1GD0Ucp6oZ4/s320/WhatsApp%20Image%202025-12-24%20at%2020.23.59%20(3).jpeg"></div>
@@ -186,8 +207,9 @@
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXX0iX4xJCkJ3R0ZX67qe44eTm_AV22OL_U3003fSK32PiFdicFlTCzFBvfBA6bD_PAlGhh_p4oknnSxmnzKOeSzn5ox35UVXeaUGCVnHM18o4l4FvfTlJmEXOXp84weKesfyaT5w_itymY8DhQ9CBiTSFE6m-9Yh4axaF4fZcT78Cfbb6aoWL9E9FH60/s320/WhatsApp%20Image%202025-12-24%20at%2020.23.59%20(1).jpeg"></div>
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicTZx0KautVJBVe6nY7PGnSBd8J7EyOV1M1jfnqZcxEh90vW4GZ0i0tfZI9U7l-v4CYwmzUs1rfEls8HIHrgO3vVkPLarZ3J6wsRHtsiVXeNXSHp0TVG5Y1PjMwW5towf9OyDnJUqSjVQgdW_U9IekFDhmHUw-TJ3yz1SA0YPw73C-ai0VMHVnZ4m67vA/s320/WhatsApp%20Image%202025-12-24%20at%2020.23.59.jpeg"></div>
                 <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_l12e-S2ugBscobtgLxvyKdBsJig9ySXLqePlpsgmIo3Zj28V3FsHPe7sCUTKJYGEKlWDI6_INahfah9uGCdIcAIThmrmT_zXdLURGt5RAkzqoaI6sRBjk547b_rwigkJ4sfyNeR-gtmCkS7VSaOk3gWFM_NcMQ2fKMv6sflyG7k2b7Cv0IbzZ4n6zZE/s320/WhatsApp%20Image%202025-12-24%20at%2020.23.58.jpeg"></div>
-                <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiajlKlgVILOrtm7fLviCLKSOtYtbxbhERgHlPEguAiKeG-sQlwU5Gp_GodqmSUVloHuy2mpbknq5WugE_f6DvVDHYm_Q69AL_Q-mhIIfPDiydcM6-7PQV9ggSN5LUnzvOwZppFdbiPM4TBtPbIw8GhgoNK2wbPE6SDgu2A3FjcoJM1_Fl1vC2t06ZoU54/s320/WhatsApp%20Image%202025-12-24%20at%18.29.03.jpeg"></div>
+                <div class="mySlides fade"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiajlKlgVILOrtm7fLviCLKSOtYtbxbhERgHlPEguAiKeG-sQlwU5Gp_GodqmSUVloHuy2mpbknq5WugE_f6DvVDHYm_Q69AL_Q-mhIIfPDiydcM6-7PQV9ggSN5LUnzvOwZppFdbiPM4TBtPbIw8GhgoNK2wbPE6SDgu2A3FjcoJM1_Fl1vC2t06ZoU54/s320/WhatsApp%20Image%202025-12-24%20at%2018.29.03.jpeg"></div>
             </div>
+
             <p>Putri Kedua dari:</p>
             <p><strong>Bpk Asep Sofyan Maulana, S.T. & Ibu Khaerunisa, S.P.</strong></p>
         </section>
@@ -198,7 +220,7 @@
             <p>Jam 10.00 - Selesai</p>
             <hr style="margin: 15px 0; opacity: 0.2;">
             <p>Komplek Ciolang Jaya <br> (Depan Yayasan Manbaul Irvani wal hikmah)</p>
-            <a href="https://maps.app.goo.gl/DJZPgtqv14SYFhW36" target="_blank" class="btn-maps">📍 Lihat Peta Lokasi</a>
+            <a href="https://maps.google.com" target="_blank" class="btn-maps">📍 Lihat Peta Lokasi</a>
         </section>
 
         <section class="timer">
@@ -217,27 +239,38 @@
     </div>
 
     <script>
+        let slideIndex = 0;
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Ganti foto setiap 3 detik
+        }
+
         function bukaUndangan() {
-            // 1. Putar Audio Lokal
             const audio = document.getElementById('audioLokal');
             audio.play().catch(e => console.log("Audio play diblokir browser"));
 
-            // 2. Jalankan Animasi Pintu
             document.getElementById('door-wrapper').classList.add('opened');
             
-            // 3. Munculkan Konten
             const content = document.getElementById('main-content');
             content.style.display = "block";
             setTimeout(() => { content.style.opacity = "1"; }, 100);
 
-            // 4. Hilangkan overlay pintu agar bisa di-scroll
+            // Mulai Slideshow
+            showSlides();
+
             setTimeout(() => {
                 document.getElementById('door-wrapper').style.display = 'none';
                 window.scrollTo(0, 0);
             }, 1500);
         }
 
-        // Countdown
         const target = new Date("Jan 5, 2026 10:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
