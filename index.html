@@ -30,7 +30,7 @@
             z-index: 9999;
             display: flex;
             overflow: hidden;
-            background: black; /* Latar belakang saat pintu transisi */
+            background: black;
         }
 
         .door {
@@ -61,7 +61,6 @@
         /* Gerakan Membuka */
         .opened .left-door { transform: translateX(-100%); }
         .opened .right-door { transform: translateX(100%); }
-        .opened .door-content { opacity: 0; pointer-events: none; }
 
         .door-content {
             position: absolute;
@@ -73,6 +72,8 @@
             transition: 0.8s;
             align-self: center;
         }
+
+        .opened .door-content { opacity: 0; visibility: hidden; pointer-events: none; }
 
         .door-content h1 {
             font-family: 'Dancing Script', cursive;
@@ -98,6 +99,7 @@
             transition: 2s;
             padding: 40px 20px;
             text-align: center;
+            display: none;
         }
 
         .hero h1 {
@@ -154,11 +156,13 @@
         }
 
         .time-box span { display: block; font-size: 1.2rem; font-weight: bold; }
-
-        .hidden { display: none; }
     </style>
 </head>
 <body>
+
+    <audio id="audioLokal" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="door-wrapper">
         <div class="door left-door"></div>
@@ -175,7 +179,7 @@
             <p>Bismillahirrahmanirrahiim</p>
             <h1>Mumtaza Maulana Zunaira</h1>
             <div class="foto-frame">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0pEKGN5pdej3rvBuff0KBYwyV2dxGyIUvPSq3wxwCNrjRzwjI_jFNKcxbB1Fg4-ONJzMrW1pHkqaf7SXCQ71n7sghXVBCAGWpkTTBPFApKQguLRR_-qeQyhZ631scHbEa9W6F-5ZO0Q5jqh9UVQgdLuEE_y1qC9t4wZLCO0KwYUxZp9kExNe9aVz5-PA/s320/WhatsApp%20Image%202025-12-24%20at%2018.29.04.jpegw=500" alt="Foto Mumtaza" class="foto-bayi">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0pEKGN5pdej3rvBuff0KBYwyV2dxGyIUvPSq3wxwCNrjRzwjI_jFNKcxbB1Fg4-ONJzMrW1pHkqaf7SXCQ71n7sghXVBCAGWpkTTBPFApKQguLRR_-qeQyhZ631scHbEa9W6F-5ZO0Q5jqh9UVQgdLuEE_y1qC9t4wZLCO0KwYUxZp9kExNe9aVz5-PA/s320/WhatsApp%20Image%202025-12-24%20at%2018.29.04.jpeg" alt="Foto Mumtaza" class="foto-bayi">
             </div>
             <p>Putri Kedua dari:</p>
             <p><strong>Bpk Asep Sofyan Maulana, S.T. & Ibu Khaerunisa, S.P., M.P.</strong></p>
@@ -187,7 +191,7 @@
             <p>Jam 10.00 - Selesai</p>
             <hr style="margin: 15px 0; opacity: 0.2;">
             <p>Komplek Ciolang Jaya <br> (Depan Yayasan Manbaul Irvani)</p>
-            <a href="https://maps.app.goo.gl/DJZPgtqv14SYFhW36" target="_blank" class="btn-maps">📍 Lihat Peta Lokasi</a>
+            <a href="https://maps.app.goo.gl/9" target="_blank" class="btn-maps">📍 Lihat Peta Lokasi</a>
         </section>
 
         <section class="timer">
@@ -200,73 +204,44 @@
             </div>
         </section>
 
-        <footer style="margin-top: 50px; font-size: 0.8rem; opacity: 0.6;">
+        <footer style="margin-top: 50px; font-size: 0.8rem; opacity: 0.6; padding-bottom: 40px;">
             <p>Keluarga Bpk Asep Sofyan Maulana</p>
         </footer>
     </div>
 
-    <div id="player" style="position: absolute; top: -9999px;"></div>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        let player;
-    let isApiReady = false;
+        function bukaUndangan() {
+            // 1. Putar Audio Lokal
+            const audio = document.getElementById('audioLokal');
+            audio.play().catch(e => console.log("Audio play diblokir browser"));
 
-    // Fungsi standar YouTube API
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            height: '0',
-            width: '0',
-            videoId: 'AhNWKUrYzwQ',
-            playerVars: { 
-                'autoplay': 0, 
-                'loop': 1, 
-                'playlist': 'AhNWKUrYzwQ',
-                'controls': 0,
-                'mute': 0 // Pastikan tidak ter-mute
-            },
-            events: {
-                'onReady': function() {
-                    isApiReady = true;
-                }
+            // 2. Jalankan Animasi Pintu
+            document.getElementById('door-wrapper').classList.add('opened');
+            
+            // 3. Munculkan Konten
+            const content = document.getElementById('main-content');
+            content.style.display = "block";
+            setTimeout(() => { content.style.opacity = "1"; }, 100);
+
+            // 4. Hilangkan overlay pintu agar bisa di-scroll
+            setTimeout(() => {
+                document.getElementById('door-wrapper').style.display = 'none';
+                window.scrollTo(0, 0);
+            }, 1500);
+        }
+
+        // Countdown
+        const target = new Date("Jan 5, 2026 10:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const d = target - now;
+            if (d > 0) {
+                document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("mins").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("secs").innerText = Math.floor((d % (1000 * 60)) / 1000);
             }
-        });
-    }
-
-    function bukaUndangan() {
-        // 1. Jalankan Animasi Pintu
-        document.getElementById('door-wrapper').classList.add('opened');
-        
-        // 2. Munculkan Konten
-        const content = document.getElementById('main-content');
-        content.style.opacity = "1";
-
-        // 3. TRICK UNTUK HP: Paksa putar video di dalam event click
-        if (isApiReady && player && player.playVideo) {
-            player.unMute(); // Kadang browser HP nge-mute otomatis
-            player.setVolume(100);
-            player.playVideo();
-        }
-
-        // Hilangkan pintu setelah animasi selesai
-        setTimeout(() => {
-            document.getElementById('door-wrapper').style.display = 'none';
-            window.scrollTo(0, 0);
-        }, 1500);
-    }
-
-    // Countdown Tetap Sama
-    const target = new Date("Jan 5, 2026 10:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const d = target - now;
-        if (d > 0) {
-            document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("mins").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("secs").innerText = Math.floor((d % (1000 * 60)) / 1000);
-        }
-    }, 1000);
+        }, 1000);
     </script>
 </body>
 </html>
