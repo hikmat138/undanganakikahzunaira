@@ -1,9 +1,9 @@
 /* ROOT VARIABLES - Tema Hijau Botol & Emas */
 :root {
-    --gold: #d4af37;
-    --dark-green: #1b3022;
-    --cream: #fdfaf6;
-    --text-dark: #333;
+    gold: #d4af37;
+    dark-green: #1b3022;
+    cream: #fdfaf6;
+    text-dark: #333;
 }
 
 * {
