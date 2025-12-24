@@ -9,11 +9,19 @@
 </head>
 <body>
 
-    <div id="overlay">
-        <div class="overlay-content">
+    <div id="door-wrapper">
+        <div class="door left-door"></div>
+        <div class="door right-door"></div>
+        
+        <div class="door-content">
             <p>Tasyakuran Aqiqah</p>
             <h1>Mumtaza Maulana Zunaira</h1>
-            <button onclick="bukaUndangan()">Buka Undangan</button>
+            <div class="guest-info">
+                <p>Kepada Bapak/Ibu/Saudara/i</p>
+                <button class="btn-open" onclick="bukaUndangan()">
+                    <span class="icon">📩</span> BUKA UNDANGAN
+                </button>
+            </div>
         </div>
     </div>
 
@@ -23,7 +31,7 @@
             <p class="subtitle">Tasyakuran Aqiqah</p>
             <h1 class="nama-bayi">Mumtaza Maulana Zunaira</h1>
             <div class="foto-frame">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=500" alt="Foto Bayi" class="foto-bayi">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=500" alt="Foto Mumtaza" class="foto-bayi">
             </div>
             <p class="orang-tua">Putri Kedua dari:</p>
             <p class="nama-ortu"><strong>Bapak Asep Sofyan Maulana, S.T.</strong><br>&<br><strong>Ibu Khaerunisa, S.P., M.P.</strong></p>
@@ -33,20 +41,14 @@
             <div class="card">
                 <h3>Waktu & Lokasi</h3>
                 <div class="detail">
-                    <div class="item">
-                        <strong>Senin</strong>
-                        <span>5 Januari 2026</span>
-                    </div>
-                    <div class="item">
-                        <strong>Jam</strong>
-                        <span>10.00 - Selesai</span>
-                    </div>
+                    <div class="item"><strong>Senin</strong><span>5 Jan 2026</span></div>
+                    <div class="item"><strong>Jam</strong><span>10.00 - Selesai</span></div>
                 </div>
                 <p class="alamat">
                     Komplek Ciolang Jaya<br>
                     (Depan Yayasan Matbaul Irvani)
                 </p>
-                <a href="https://www.google.com/maps/search/Yayasan+Matbaul+Irvani" target="_blank" class="btn-maps">📍 Buka Google Maps</a>
+                <a href="https://maps.google.com/?q=-6.123,106.123" target="_blank" class="btn-maps">📍 Buka Google Maps</a>
             </div>
         </section>
 
@@ -62,14 +64,12 @@
 
         <footer>
             <p>Doa restu Anda adalah karunia terindah bagi kami.</p>
-            <p>&copy; 2026 - Keluarga Bpk Asep Sofyan</p>
+            <p>© 2026 - Keluarga Bpk Asep Sofyan</p>
         </footer>
     </div>
 
-   <div id="player" style="position: absolute; top: -9999px; left: -9999px;"></div>
-
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="script.js"></script>
-
+    <div id="player" style="position: absolute; top: -9999px;"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
 </body>
 </html>
