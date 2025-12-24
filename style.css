@@ -1,146 +1,76 @@
 :root {
-    --primary: #d4a373;
-    --secondary: #6b705c;
-    --bg: #fdfaf6;
-    --text: #5d5d5d;
-}
-
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
+    --gold: #d4af37;
+    --dark-green: #2d4739;
+    --cream: #fdfaf6;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
+    margin: 0; font-family: 'Poppins', sans-serif;
+    background: var(--cream); overflow-x: hidden;
 }
 
-/* Responsif untuk Overlay */
-#overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1000') center/cover;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 20px;
+/* Animasi Pintu */
+#door-wrapper {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
 }
 
-.overlay-content h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2rem, 8vw, 3.5rem);
-    margin: 15px 0;
+.door {
+    position: absolute; top: 0; width: 50%; height: 100%;
+    background-color: var(--dark-green);
+    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* Tekstur kayu/pintu */
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10; border: 2px solid var(--gold);
 }
 
-/* Main Content */
-.hidden { display: none; }
+.left-door { left: 0; border-right: 5px double var(--gold); }
+.right-door { right: 0; border-left: 5px double var(--gold); }
 
-.hero {
-    padding: 40px 20px;
-    text-align: center;
+.door-open .left-door { transform: translateX(-100%); }
+.door-open .right-door { transform: translateX(100%); }
+
+/* Content di atas pintu */
+.door-content {
+    position: relative; z-index: 20; text-align: center; color: white;
+    padding: 20px; transition: opacity 0.5s;
 }
 
-.nama-bayi {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.2rem, 10vw, 4rem);
-    color: var(--primary);
-    margin: 10px 0;
+.door-content h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--gold); }
+
+.btn-open {
+    margin-top: 30px; padding: 15px 30px; border: 2px solid var(--gold);
+    background: transparent; color: var(--gold); font-weight: bold;
+    border-radius: 50px; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
+
+.btn-open:hover { background: var(--gold); color: white; }
+
+/* Konten Utama */
+.hidden { display: none; opacity: 0; }
+.show-content { display: block; animation: fadeIn 2s forwards; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .foto-frame {
-    margin: 25px auto;
-    width: 220px;
-    height: 280px;
-    border: 10px solid #fff;
-    border-radius: 100px 100px 10px 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    animation: floating 3s ease-in-out infinite;
+    width: 200px; height: 260px; margin: 20px auto;
+    border: 8px solid white; border-radius: 100px 100px 10px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden;
 }
 
-.foto-bayi {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.foto-bayi { width: 100%; height: 100%; object-fit: cover; }
 
 .card {
-    background: #fff;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 400px;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.detail {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
+    background: white; width: 90%; max-width: 400px; margin: 20px auto;
+    padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .btn-maps {
-    display: block;
-    background: var(--secondary);
-    color: white;
-    padding: 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 20px;
-    font-size: 0.9rem;
-}
-
-/* Timer HP Friendly */
-#countdown {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
+    display: block; background: var(--dark-green); color: white;
+    padding: 12px; border-radius: 10px; text-decoration: none; margin-top: 15px;
 }
 
 .time-box {
-    background: #faedcd;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 12px;
-}
-
-.time-box span {
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.time-box small {
-    font-size: 0.7rem;
-}
-
-/* Animasi */
-@keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-footer {
-    padding: 50px 20px;
-    font-size: 0.75rem;
-    opacity: 0.8;
-}
-
-/* Perbaikan untuk HP layar kecil */
-@media (max-width: 360px) {
-    .time-box { width: 60px; height: 60px; }
-    .nama-bayi { font-size: 1.8rem; }
+    background: #e8eee8; padding: 10px; border-radius: 10px; min-width: 70px; display: inline-block;
 }
