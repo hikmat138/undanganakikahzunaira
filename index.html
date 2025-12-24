@@ -210,43 +210,63 @@
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                videoId: 'AhNWKUrYzwQ',
-                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'AhNWKUrYzwQ' }
-            });
-        }
+    let isApiReady = false;
 
-        function bukaUndangan() {
-            // Animasi Pintu
-            document.getElementById('door-wrapper').classList.add('opened');
-            
-            // Munculkan Konten
-            const content = document.getElementById('main-content');
-            content.style.opacity = "1";
-
-            // Play Musik
-            if (player && player.playVideo) {
-                player.playVideo();
+    // Fungsi standar YouTube API
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '0',
+            width: '0',
+            videoId: 'AhNWKUrYzwQ',
+            playerVars: { 
+                'autoplay': 0, 
+                'loop': 1, 
+                'playlist': 'AhNWKUrYzwQ',
+                'controls': 0,
+                'mute': 0 // Pastikan tidak ter-mute
+            },
+            events: {
+                'onReady': function() {
+                    isApiReady = true;
+                }
             }
+        });
+    }
 
-            // Hilangkan overlay pintu setelah animasi selesai agar bisa scroll
-            setTimeout(() => {
-                document.getElementById('door-wrapper').style.display = 'none';
-            }, 1500);
+    function bukaUndangan() {
+        // 1. Jalankan Animasi Pintu
+        document.getElementById('door-wrapper').classList.add('opened');
+        
+        // 2. Munculkan Konten
+        const content = document.getElementById('main-content');
+        content.style.opacity = "1";
+
+        // 3. TRICK UNTUK HP: Paksa putar video di dalam event click
+        if (isApiReady && player && player.playVideo) {
+            player.unMute(); // Kadang browser HP nge-mute otomatis
+            player.setVolume(100);
+            player.playVideo();
         }
 
-        // Countdown
-        const target = new Date("Jan 5, 2026 10:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const d = target - now;
+        // Hilangkan pintu setelah animasi selesai
+        setTimeout(() => {
+            document.getElementById('door-wrapper').style.display = 'none';
+            window.scrollTo(0, 0);
+        }, 1500);
+    }
+
+    // Countdown Tetap Sama
+    const target = new Date("Jan 5, 2026 10:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const d = target - now;
+        if (d > 0) {
             document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
             document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById("mins").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById("secs").innerText = Math.floor((d % (1000 * 60)) / 1000);
-        }, 1000);
+        }
+    }, 1000);
     </script>
 </body>
 </html>
