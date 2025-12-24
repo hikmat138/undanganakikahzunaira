@@ -1,76 +1,235 @@
+/* ROOT VARIABLES - Tema Hijau Botol & Emas */
 :root {
     --gold: #d4af37;
-    --dark-green: #2d4739;
+    --dark-green: #1b3022;
     --cream: #fdfaf6;
+    --text-dark: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0; font-family: 'Poppins', sans-serif;
-    background: var(--cream); overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
 }
 
-/* Animasi Pintu */
+/* --- ANIMASI PINTU (OVERLAY) --- */
 #door-wrapper {
-    position: fixed; inset: 0; z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    perspective: 1000px;
 }
 
 .door {
-    position: absolute; top: 0; width: 50%; height: 100%;
+    position: absolute;
+    top: 0;
+    width: 50.5%; /* Dilebihkan dikit agar tidak ada celah di tengah */
+    height: 100%;
     background-color: var(--dark-green);
-    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* Tekstur kayu/pintu */
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10; border: 2px solid var(--gold);
+    /* Tekstur pintu kayu mewah */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); 
+    transition: transform 1.8s cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: 10;
 }
 
-.left-door { left: 0; border-right: 5px double var(--gold); }
-.right-door { right: 0; border-left: 5px double var(--gold); }
+.left-door {
+    left: 0;
+    border-right: 3px solid var(--gold);
+    transform-origin: left;
+}
 
-.door-open .left-door { transform: translateX(-100%); }
-.door-open .right-door { transform: translateX(100%); }
+.right-door {
+    right: 0;
+    border-left: 3px solid var(--gold);
+    transform-origin: right;
+}
 
-/* Content di atas pintu */
+/* Saat pintu terbuka */
+.door-open .left-door {
+    transform: rotateY(-100deg);
+}
+
+.door-open .right-door {
+    transform: rotateY(100deg);
+}
+
+/* Konten di tengah pintu (Tombol & Judul) */
 .door-content {
-    position: relative; z-index: 20; text-align: center; color: white;
-    padding: 20px; transition: opacity 0.5s;
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    transition: opacity 0.8s ease;
 }
 
-.door-content h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--gold); }
+.door-content h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: var(--gold);
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
 
 .btn-open {
-    margin-top: 30px; padding: 15px 30px; border: 2px solid var(--gold);
-    background: transparent; color: var(--gold); font-weight: bold;
-    border-radius: 50px; cursor: pointer; transition: 0.3s;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    margin-top: 30px;
+    padding: 15px 35px;
+    border: 2px solid var(--gold);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    animation: pulse 2s infinite;
 }
 
-.btn-open:hover { background: var(--gold); color: white; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
-/* Konten Utama */
-.hidden { display: none; opacity: 0; }
-.show-content { display: block; animation: fadeIn 2s forwards; }
+/* --- KONTEN UTAMA --- */
+.hidden {
+    display: none;
+    opacity: 0;
+}
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+#main-content {
+    padding-bottom: 50px;
+}
+
+.show-content {
+    display: block;
+    animation: fadeInContent 2s forwards;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.nama-bayi {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--dark-green);
+    margin: 15px 0;
+}
 
 .foto-frame {
-    width: 200px; height: 260px; margin: 20px auto;
-    border: 8px solid white; border-radius: 100px 100px 10px 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden;
+    width: 220px;
+    height: 280px;
+    margin: 30px auto;
+    border: 10px solid white;
+    border-radius: 110px 110px 15px 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
-.foto-bayi { width: 100%; height: 100%; object-fit: cover; }
+.foto-bayi {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+/* Card Info */
 .card {
-    background: white; width: 90%; max-width: 400px; margin: 20px auto;
-    padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
 }
 
 .btn-maps {
-    display: block; background: var(--dark-green); color: white;
-    padding: 12px; border-radius: 10px; text-decoration: none; margin-top: 15px;
+    display: inline-block;
+    background: var(--dark-green);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Countdown */
+.timer {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .time-box {
-    background: #e8eee8; padding: 10px; border-radius: 10px; min-width: 70px; display: inline-block;
+    background: #eef2ee;
+    min-width: 75px;
+    padding: 15px 5px;
+    border-radius: 15px;
+    color: var(--dark-green);
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.time-box small {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Responsif Mobile */
+@media (max-width: 480px) {
+    .door-content h1 { font-size: 2rem; }
+    .nama-bayi { font-size: 2rem; }
+    .time-box { min-width: 65px; }
 }
