@@ -4,52 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Aqiqah Mumtaza</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-green: #1b3022;
+            --cream: #fdfaf6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMASI PINTU --- */
+        #door-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            overflow: hidden;
+            background: black; /* Latar belakang saat pintu transisi */
+        }
+
+        .door {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: var(--dark-green);
+            background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+
+        .left-door {
+            left: 0;
+            border-right: 2px solid var(--gold);
+            justify-content: flex-end;
+        }
+
+        .right-door {
+            right: 0;
+            border-left: 2px solid var(--gold);
+            justify-content: flex-start;
+        }
+
+        /* Gerakan Membuka */
+        .opened .left-door { transform: translateX(-100%); }
+        .opened .right-door { transform: translateX(100%); }
+        .opened .door-content { opacity: 0; pointer-events: none; }
+
+        .door-content {
+            position: absolute;
+            width: 100%;
+            z-index: 20;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            transition: 0.8s;
+            align-self: center;
+        }
+
+        .door-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .btn-open {
+            padding: 15px 30px;
+            border: 2px solid var(--gold);
+            background: rgba(0,0,0,0.5);
+            color: var(--gold);
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- ISI UNDANGAN --- */
+        #main-content {
+            opacity: 0;
+            transition: 2s;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--dark-green);
+            margin: 10px 0;
+        }
+
+        .foto-frame {
+            width: 220px;
+            height: 280px;
+            margin: 30px auto;
+            border: 10px solid white;
+            border-radius: 110px 110px 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .foto-bayi { width: 100%; height: 100%; object-fit: cover; }
+
+        .card {
+            background: white;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-maps {
+            display: inline-block;
+            background: var(--dark-green);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: #eef2ee;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 70px;
+        }
+
+        .time-box span { display: block; font-size: 1.2rem; font-weight: bold; }
+
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
 
     <div id="door-wrapper">
         <div class="door left-door"></div>
-        <div class="door right-door"></div>
-        
         <div class="door-content">
             <p>Tasyakuran Aqiqah</p>
             <h1>Mumtaza Maulana Zunaira</h1>
-            <div class="guest-info">
-                <p>Kepada Bapak/Ibu/Saudara/i</p>
-                <button class="btn-open" onclick="bukaUndangan()">
-                    <span class="icon">📩</span> BUKA UNDANGAN
-                </button>
-            </div>
+            <button class="btn-open" onclick="bukaUndangan()">BUKA UNDANGAN</button>
         </div>
+        <div class="door right-door"></div>
     </div>
 
-    <div id="main-content" class="hidden">
+    <div id="main-content">
         <section class="hero">
-            <div class="flower-top">🌸 🌿 🌸</div>
-            <p class="subtitle">Tasyakuran Aqiqah</p>
-            <h1 class="nama-bayi">Mumtaza Maulana Zunaira</h1>
+            <p>Bismillahirrahmannirraheem</p>
+            <h1>Mumtaza Maulana Zunaira</h1>
             <div class="foto-frame">
                 <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=500" alt="Foto Mumtaza" class="foto-bayi">
             </div>
-            <p class="orang-tua">Putri Kedua dari:</p>
-            <p class="nama-ortu"><strong>Bapak Asep Sofyan Maulana, S.T.</strong><br>&<br><strong>Ibu Khaerunisa, S.P., M.P.</strong></p>
+            <p>Putri Kedua dari:</p>
+            <p><strong>Bpk Asep Sofyan Maulana, S.T. & Ibu Khaerunisa, S.P., M.P.</strong></p>
         </section>
 
-        <section class="info-acara">
-            <div class="card">
-                <h3>Waktu & Lokasi</h3>
-                <div class="detail">
-                    <div class="item"><strong>Senin</strong><span>5 Jan 2026</span></div>
-                    <div class="item"><strong>Jam</strong><span>10.00 - Selesai</span></div>
-                </div>
-                <p class="alamat">
-                    Komplek Ciolang Jaya<br>
-                    (Depan Yayasan Matbaul Irvani)
-                </p>
-                <a href="https://maps.google.com/?q=-6.123,106.123" target="_blank" class="btn-maps">📍 Buka Google Maps</a>
-            </div>
+        <section class="card">
+            <h3>Waktu & Lokasi</h3>
+            <p><strong>Senin, 5 Januari 2026</strong></p>
+            <p>Jam 10.00 - Selesai</p>
+            <hr style="margin: 15px 0; opacity: 0.2;">
+            <p>Komplek Ciolang Jaya <br> (Depan Yayasan Matbaul Irvani)</p>
+            <a href="https://www.google.com/maps/search/Yayasan+Matbaul+Irvani" target="_blank" class="btn-maps">📍 Lihat Peta Lokasi</a>
         </section>
 
         <section class="timer">
@@ -62,14 +200,53 @@
             </div>
         </section>
 
-        <footer>
-            <p>Doa restu Anda adalah karunia terindah bagi kami.</p>
-            <p>© 2026 - Keluarga Bpk Asep Sofyan</p>
+        <footer style="margin-top: 50px; font-size: 0.8rem; opacity: 0.6;">
+            <p>Keluarga Bpk Asep Sofyan Maulana</p>
         </footer>
     </div>
 
     <div id="player" style="position: absolute; top: -9999px;"></div>
+
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="script.js"></script>
+    <script>
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0',
+                videoId: 'AhNWKUrYzwQ',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'AhNWKUrYzwQ' }
+            });
+        }
+
+        function bukaUndangan() {
+            // Animasi Pintu
+            document.getElementById('door-wrapper').classList.add('opened');
+            
+            // Munculkan Konten
+            const content = document.getElementById('main-content');
+            content.style.opacity = "1";
+
+            // Play Musik
+            if (player && player.playVideo) {
+                player.playVideo();
+            }
+
+            // Hilangkan overlay pintu setelah animasi selesai agar bisa scroll
+            setTimeout(() => {
+                document.getElementById('door-wrapper').style.display = 'none';
+            }, 1500);
+        }
+
+        // Countdown
+        const target = new Date("Jan 5, 2026 10:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const d = target - now;
+            document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerText = Math.floor((d % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
 </body>
 </html>
