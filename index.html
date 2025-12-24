@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Aqiqahan Mumtaza Maulana Zunaira</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4CAF50, #FFD700);
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: slideInFromTop 1s ease-out;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        .image {
+            width: 200px;
+            height: 200px;
+            background: url('https://via.placeholder.com/200x200/FFD700/000?text=Aqiqahan') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            margin: 20px auto;
+            animation: rotate 3s infinite linear;
+        }
+        .details {
+            animation: fadeInUp 2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInFromTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Undangan Aqiqahan</h1>
+        <div class="image"></div>
+        <p>Dengan segala kerendahan hati, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara Aqiqahan anak kami yang ke-2:</p>
+        <p><strong>Mumtaza Maulana Zunaira</strong></p>
+        <div class="details">
+            <p>Anak ke-2 dari pasangan:</p>
+            <p>Bapak Asep Sofyan Maulana, S.T</p>
+            <p>dan</p>
+            <p>Ibu Khaerunisa, S.P., M.P.</p>
+            <p><strong>Hari/Tanggal:</strong> Senin, 5 Januari 2026</p>
+            <p><strong>Waktu:</strong> 10.00 WIB - Selesai</p>
+            <p><strong>Tempat:</strong> Komplek Ciolang Jaya, Depan Yayasan Matbaul Irvani</p>
+        </div>
+        <p>Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+        <p>Wassalamualaikum Warahmatullahi Wabarakatuh</p>
+    </div>
+    <script>
+        // Animasi tambahan: teks muncul bertahap
+        const elements = document.querySelectorAll('p, h1');
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+</html>
